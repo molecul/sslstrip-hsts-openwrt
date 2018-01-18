@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+# 18.01.2018 - Adaptate for GL-AR300M
 # Installation script for SSLstrip2 + DNS2proxy for the WiFi Pineapple NANO + TETRA.
 # I consider this a dirty fix to get sslstrip2 running. It's needed because the upstream libraries are not up to date.
 #
@@ -9,7 +10,7 @@
 RED='\033[0;31m'
 NC='\033[0m'
 sslstrip_version="0.9" 
-SSLSTRIP_IPK="https://github.com/adde88/sslstrip-hsts-openwrt/raw/master/sslstrip-hsts_"$sslstrip_version"_ar71xx.ipk"
+SSLSTRIP_IPK="https://github.com/molecul/sslstrip-hsts-openwrt/raw/master/sslstrip-hsts_"$sslstrip_version"_ar71xx.ipk"
 INSTROOT=""
 #
 #	Starting Installtion.
@@ -26,7 +27,8 @@ wget "$SSLSTRIP_IPK"
 if [ -e /sd ]; then
 	# sym-link & nano install
 	INSTROOT="/sd"
-	rm -r /usr/lib/python2.7
+	#rm -r /usr/lib/python2.7
+	mv /usr/lib/python2.7 /usr/lib/python2.7-backup
 	mkdir -p /sd/usr/lib/python2.7
 	ln -s /sd/usr/lib/python2.7 /usr/lib/python2.7
 	opkg --dest sd --force-overwrite install sslstrip-hsts_"$sslstrip_version"_ar71xx.ipk
@@ -42,4 +44,6 @@ cd -
 chmod +x ${INSTROOT}/usr/share/dns2proxy/dns2proxy.py
 ln -s ${INSTROOT}/usr/share/dns2proxy/dns2proxy.py /usr/bin/dns2proxy
 echo -e "${RED}Installation completed!"
+mv /usr/lib/python2.7 /usr/lib/python2.7_dns2proxy
+mv /usr/lib/python2.7-backup /usr/lib/python2.7
 exit 0
