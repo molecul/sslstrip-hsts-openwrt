@@ -1,4 +1,4 @@
-# SSLstrip2 + DNS2Proxy - For WiFi Pineapple NANO + TETRA
+# SSLstrip2 + DNS2Proxy - For WiFi Pineapple NANO [GL-AR300M]
 
 Working version of SSLstrip2 with HSTS bypassing.
 
@@ -9,7 +9,7 @@ SSH to your Pineapple. Download/launch the INSTALL.sh script to install SSLstrip
 ### Installing
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/adde88/sslstrip-hsts-openwrt/master/INSTALL.sh | bash -s -- -v -v
+wget -qO- https://raw.githubusercontent.com/molecul/sslstrip-hsts-openwrt/master/INSTALL.sh | bash -s -- -v -v
 ```
 
 ## Running the tools
